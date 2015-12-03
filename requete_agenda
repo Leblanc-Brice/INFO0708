@@ -1,0 +1,9 @@
+SELECT `formateur`.`nom` as formateur_nom, `formateur`.`prenom` as formateur_prenom, `formateur`.`mail` as formateur_mail,
+ `gestionnaire`.`nom` as gestionnaire_nom, `gestionnaire`.`prenom` as gestionnaire_prenom, `gestionnaire`.`mail` as gestionnaire_mail,
+ `presence`.`date_heure`, `presence`.`duree`,
+ `salle`.`numero` as salle_num, `succursale`.`adresse` as succ_addr, `succursale`.`telephone` as succ_tel, `succursale`.`mail` as succ_mail,
+ `sous_theme`.`libelle` as sous_theme_lib, `sous_theme`.`code` as sous_theme_code, `sous_theme`.`description` as sous_theme_desc,
+ `theme`.`libelle` as theme_lib, `theme`.`code` as theme_code
+FROM formateur, gestionnaire, presence, salle, succursale, sous_theme, theme, formation
+WHERE (`formation`.`id_formation` = 0)
+ORDER BY `presence`.`date_heure` ASC
