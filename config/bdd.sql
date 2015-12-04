@@ -1,400 +1,402 @@
-CREATE DATABASE IF NOT EXISTS succursale;
-USE succursale;
+drop database if exists succursale;
+
+create database if not exists succursale;
+use succursale;
 # -----------------------------------------------------------------------------
-#       TABLE : APPRENANT
+#       table : apprenant
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS APPRENANT
+create table if not exists apprenant
  (
-   ID_PERSONNE INTEGER(2) NOT NULL  ,
-   ID_CLIENT INTEGER(2) NOT NULL  ,
-   NOM VARCHAR(100) NOT NULL  ,
-   PRENOM VARCHAR(100) NOT NULL  ,
-   MAIL VARCHAR(100) NOT NULL  
-   , PRIMARY KEY (ID_PERSONNE) 
+   id_personne integer not null  ,
+   id_client integer not null  ,
+   nom varchar(100) not null  ,
+   prenom varchar(100) not null  ,
+   mail varchar(100) not null  
+   , primary key (id_personne) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE APPRENANT
+#       index de la table apprenant
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_APPRENANT_CLIENT
-     ON APPRENANT (ID_CLIENT ASC);
+create  index i_fk_apprenant_client
+     on apprenant (id_client asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : PERSONNE
+#       table : personne
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS PERSONNE
+create table if not exists personne
  (
-   ID_PERSONNE INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   NOM VARCHAR(100) NOT NULL  ,
-   PRENOM VARCHAR(100) NOT NULL  ,
-   MAIL VARCHAR(100) NOT NULL  
-   , PRIMARY KEY (ID_PERSONNE) 
+   id_personne integer not null  ,
+   nom varchar(100) not null  ,
+   prenom varchar(100) not null  ,
+   mail varchar(100) not null  
+   , primary key (id_personne) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       TABLE : FORMATEUR
+#       table : formateur
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS FORMATEUR
+create table if not exists formateur
  (
-   ID_PERSONNE INTEGER(2) NOT NULL  ,
-   LOGIN VARCHAR(100) NOT NULL  ,
-   MDP VARCHAR(100) NOT NULL  ,
-   NOM VARCHAR(100) NOT NULL  ,
-   PRENOM VARCHAR(100) NOT NULL  ,
-   MAIL VARCHAR(100) NOT NULL  
-   , PRIMARY KEY (ID_PERSONNE) 
+   id_personne integer not null  ,
+   login varchar(100) not null  ,
+   mdp varchar(100) not null  ,
+   nom varchar(100) not null  ,
+   prenom varchar(100) not null  ,
+   mail varchar(100) not null  
+   , primary key (id_personne) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       TABLE : SOUS_THEME
+#       table : sous_theme
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS SOUS_THEME
+create table if not exists sous_theme
  (
-   ID_SOUS_THEME INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   ID_THEME INTEGER(2) NOT NULL  ,
-   LIBELLE VARCHAR(150) NOT NULL  ,
-   CODE VARCHAR(10) NOT NULL  ,
-   DESCRIPTION VARCHAR(1000) NOT NULL  
-   , PRIMARY KEY (ID_SOUS_THEME) 
+   id_sous_theme integer not null  ,
+   id_theme integer not null  ,
+   libelle varchar(150) not null  ,
+   code varchar(10) not null  ,
+   description varchar(1000) not null  
+   , primary key (id_sous_theme) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE SOUS_THEME
+#       index de la table sous_theme
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_SOUS_THEME_THEME
-     ON SOUS_THEME (ID_THEME ASC);
+create  index i_fk_sous_theme_theme
+     on sous_theme (id_theme asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : FORMATION
+#       table : formation
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS FORMATION
+create table if not exists formation
  (
-   ID_FORMATION INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   ID_PERSONNE INTEGER(2) NOT NULL  ,
-   ANNULATION VARCHAR(1500) NULL  
-   , PRIMARY KEY (ID_FORMATION) 
+   id_formation integer not null  ,
+   id_personne integer not null  ,
+   annulation varchar(1500) null  
+   , primary key (id_formation) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE FORMATION
+#       index de la table formation
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_FORMATION_FORMATEUR
-     ON FORMATION (ID_PERSONNE ASC);
+create  index i_fk_formation_formateur
+     on formation (id_personne asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : CLIENT
+#       table : client
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS CLIENT
+create table if not exists client
  (
-   ID_CLIENT INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   NOM VARCHAR(150) NOT NULL  ,
-   ADRESSE CHAR(32) NOT NULL  ,
-   TELEPHONE VARCHAR(16) NOT NULL  ,
-   MAIL VARCHAR(100) NOT NULL  
-   , PRIMARY KEY (ID_CLIENT) 
+   id_client integer not null  ,
+   nom varchar(150) not null  ,
+   adresse varchar(150) not null  ,
+   telephone varchar(16) not null  ,
+   mail varchar(100) not null  
+   , primary key (id_client) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       TABLE : SUCCURSALE
+#       table : succursale
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS SUCCURSALE
+create table if not exists succursale
  (
-   ID_SUCCURSALE INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   ADRESSE VARCHAR(150) NOT NULL  ,
-   TELEPHONE VARCHAR(16) NOT NULL  ,
-   MAIL VARCHAR(100) NOT NULL  
-   , PRIMARY KEY (ID_SUCCURSALE) 
+   id_succursale integer not null  ,
+   adresse varchar(150) not null  ,
+   telephone varchar(16) not null  ,
+   mail varchar(100) not null  
+   , primary key (id_succursale) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       TABLE : GESTIONNAIRE
+#       table : gestionnaire
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS GESTIONNAIRE
+create table if not exists gestionnaire
  (
-   ID_PERSONNE INTEGER(2) NOT NULL  ,
-   ID_SUCCURSALE INTEGER(2) NOT NULL  ,
-   LOGIN VARCHAR(100) NOT NULL  ,
-   MDP VARCHAR(100) NOT NULL  ,
-   NOM VARCHAR(100) NOT NULL  ,
-   PRENOM VARCHAR(100) NOT NULL  ,
-   MAIL VARCHAR(100) NOT NULL  
-   , PRIMARY KEY (ID_PERSONNE) 
+   id_personne integer not null  ,
+   id_succursale integer not null  ,
+   login varchar(100) not null  ,
+   mdp varchar(100) not null  ,
+   nom varchar(100) not null  ,
+   prenom varchar(100) not null  ,
+   mail varchar(100) not null  
+   , primary key (id_personne) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE GESTIONNAIRE
+#       index de la table gestionnaire
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_GESTIONNAIRE_SUCCURSALE
-     ON GESTIONNAIRE (ID_SUCCURSALE ASC);
+create  index i_fk_gestionnaire_succursale
+     on gestionnaire (id_succursale asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : SALLE
+#       table : salle
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS SALLE
+create table if not exists salle
  (
-   ID_SALLE INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   ID_SUCCURSALE INTEGER(2) NOT NULL  ,
-   NUMERO INTEGER(2) NOT NULL  ,
-   CAPACITE INTEGER(2) NOT NULL  
-   , PRIMARY KEY (ID_SALLE) 
+   id_salle integer not null  ,
+   id_succursale integer not null  ,
+   numero integer not null  ,
+   capacite integer not null  
+   , primary key (id_salle) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE SALLE
+#       index de la table salle
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_SALLE_SUCCURSALE
-     ON SALLE (ID_SUCCURSALE ASC);
+create  index i_fk_salle_succursale
+     on salle (id_succursale asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : THEME
+#       table : theme
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS THEME
+create table if not exists theme
  (
-   ID_THEME INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   LIBELLE VARCHAR(150) NOT NULL  ,
-   CODE VARCHAR(10) NOT NULL  
-   , PRIMARY KEY (ID_THEME) 
+   id_theme integer not null  ,
+   libelle varchar(150) not null  ,
+   code varchar(10) not null  
+   , primary key (id_theme) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       TABLE : FORMATION_SALLE
+#       table : formation_salle
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS FORMATION_SALLE
+create table if not exists formation_salle
  (
-   ID_SALLE INTEGER(2) NOT NULL  AUTO_INCREMENT,
-   ID_FORMATION INTEGER(2) NOT NULL  
-   , PRIMARY KEY (ID_SALLE,ID_FORMATION) 
+   id_salle integer not null  ,
+   id_formation integer not null  
+   , primary key (id_salle,id_formation) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE FORMATION_SALLE
+#       index de la table formation_salle
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_FORMATION_SALLE_SALLE
-     ON FORMATION_SALLE (ID_SALLE ASC);
+create  index i_fk_formation_salle_salle
+     on formation_salle (id_salle asc);
 
-CREATE  INDEX I_FK_FORMATION_SALLE_FORMATION
-     ON FORMATION_SALLE (ID_FORMATION ASC);
+create  index i_fk_formation_salle_formation
+     on formation_salle (id_formation asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : FORMATION_THEME
+#       table : formation_theme
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS FORMATION_THEME
+create table if not exists formation_theme
  (
-   ID_SOUS_THEME INTEGER(2) NOT NULL  ,
-   ID_FORMATION INTEGER(2) NOT NULL  
-   , PRIMARY KEY (ID_SOUS_THEME,ID_FORMATION) 
+   id_sous_theme integer not null  ,
+   id_formation integer not null  
+   , primary key (id_sous_theme,id_formation) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE FORMATION_THEME
+#       index de la table formation_theme
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_FORMATION_THEME_SOUS_THEME
-     ON FORMATION_THEME (ID_SOUS_THEME ASC);
+create  index i_fk_formation_theme_sous_theme
+     on formation_theme (id_sous_theme asc);
 
-CREATE  INDEX I_FK_FORMATION_THEME_FORMATION
-     ON FORMATION_THEME (ID_FORMATION ASC);
+create  index i_fk_formation_theme_formation
+     on formation_theme (id_formation asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : PRESENCE
+#       table : presence
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS PRESENCE
+create table if not exists presence
  (
-   ID_PERSONNE INTEGER(2) NOT NULL  ,
-   ID_FORMATION INTEGER(2) NOT NULL  ,
-   DATE_HEURE DATETIME NOT NULL  ,
-   DUREE TIME NOT NULL  
-   , PRIMARY KEY (ID_PERSONNE,ID_FORMATION) 
+   id_personne integer not null  ,
+   id_formation integer not null  ,
+   date_heure datetime not null  ,
+   duree time not null  
+   , primary key (id_personne,id_formation) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE PRESENCE
+#       index de la table presence
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_PRESENCE_APPRENANT
-     ON PRESENCE (ID_PERSONNE ASC);
+create  index i_fk_presence_apprenant
+     on presence (id_personne asc);
 
-CREATE  INDEX I_FK_PRESENCE_FORMATION
-     ON PRESENCE (ID_FORMATION ASC);
+create  index i_fk_presence_formation
+     on presence (id_formation asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : FORMATEUR_THEME
+#       table : formateur_theme
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS FORMATEUR_THEME
+create table if not exists formateur_theme
  (
-   ID_SOUS_THEME INTEGER(2) NOT NULL  ,
-   ID_PERSONNE INTEGER(2) NOT NULL  
-   , PRIMARY KEY (ID_SOUS_THEME,ID_PERSONNE) 
+   id_sous_theme integer not null  ,
+   id_personne integer not null  
+   , primary key (id_sous_theme,id_personne) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE FORMATEUR_THEME
+#       index de la table formateur_theme
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_FORMATEUR_THEME_SOUS_THEME
-     ON FORMATEUR_THEME (ID_SOUS_THEME ASC);
+create  index i_fk_formateur_theme_sous_theme
+     on formateur_theme (id_sous_theme asc);
 
-CREATE  INDEX I_FK_FORMATEUR_THEME_FORMATEUR
-     ON FORMATEUR_THEME (ID_PERSONNE ASC);
+create  index i_fk_formateur_theme_formateur
+     on formateur_theme (id_personne asc);
 
 # -----------------------------------------------------------------------------
-#       TABLE : SALLE_THEME
+#       table : salle_theme
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS SALLE_THEME
+create table if not exists salle_theme
  (
-   ID_SALLE INTEGER(2) NOT NULL  ,
-   ID_SOUS_THEME INTEGER(2) NOT NULL  
-   , PRIMARY KEY (ID_SALLE,ID_SOUS_THEME) 
+   id_salle integer not null  ,
+   id_sous_theme integer not null  
+   , primary key (id_salle,id_sous_theme) 
  ) 
  comment = "";
 
 # -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE SALLE_THEME
+#       index de la table salle_theme
 # -----------------------------------------------------------------------------
 
 
-CREATE  INDEX I_FK_SALLE_THEME_SALLE
-     ON SALLE_THEME (ID_SALLE ASC);
+create  index i_fk_salle_theme_salle
+     on salle_theme (id_salle asc);
 
-CREATE  INDEX I_FK_SALLE_THEME_SOUS_THEME
-     ON SALLE_THEME (ID_SOUS_THEME ASC);
+create  index i_fk_salle_theme_sous_theme
+     on salle_theme (id_sous_theme asc);
 
 
 # -----------------------------------------------------------------------------
-#       CREATION DES REFERENCES DE TABLE
+#       creation des references de table
 # -----------------------------------------------------------------------------
 
 
-ALTER TABLE APPRENANT 
-  ADD FOREIGN KEY FK_APPRENANT_CLIENT (ID_CLIENT)
-      REFERENCES CLIENT (ID_CLIENT) ;
+alter table apprenant 
+  add foreign key fk_apprenant_client (id_client)
+      references client (id_client) ;
 
 
-ALTER TABLE APPRENANT 
-  ADD FOREIGN KEY FK_APPRENANT_PERSONNE (ID_PERSONNE)
-      REFERENCES PERSONNE (ID_PERSONNE) ;
+alter table apprenant 
+  add foreign key fk_apprenant_personne (id_personne)
+      references personne (id_personne) ;
 
 
-ALTER TABLE FORMATEUR 
-  ADD FOREIGN KEY FK_FORMATEUR_PERSONNE (ID_PERSONNE)
-      REFERENCES PERSONNE (ID_PERSONNE) ;
+alter table formateur 
+  add foreign key fk_formateur_personne (id_personne)
+      references personne (id_personne) ;
 
 
-ALTER TABLE SOUS_THEME 
-  ADD FOREIGN KEY FK_SOUS_THEME_THEME (ID_THEME)
-      REFERENCES THEME (ID_THEME) ;
+alter table sous_theme 
+  add foreign key fk_sous_theme_theme (id_theme)
+      references theme (id_theme) ;
 
 
-ALTER TABLE FORMATION 
-  ADD FOREIGN KEY FK_FORMATION_FORMATEUR (ID_PERSONNE)
-      REFERENCES FORMATEUR (ID_PERSONNE) ;
+alter table formation 
+  add foreign key fk_formation_formateur (id_personne)
+      references formateur (id_personne) ;
 
 
-ALTER TABLE GESTIONNAIRE 
-  ADD FOREIGN KEY FK_GESTIONNAIRE_SUCCURSALE (ID_SUCCURSALE)
-      REFERENCES SUCCURSALE (ID_SUCCURSALE) ;
+alter table gestionnaire 
+  add foreign key fk_gestionnaire_succursale (id_succursale)
+      references succursale (id_succursale) ;
 
 
-ALTER TABLE GESTIONNAIRE 
-  ADD FOREIGN KEY FK_GESTIONNAIRE_FORMATEUR (ID_PERSONNE)
-      REFERENCES FORMATEUR (ID_PERSONNE) ;
+alter table gestionnaire 
+  add foreign key fk_gestionnaire_formateur (id_personne)
+      references formateur (id_personne) ;
 
 
-ALTER TABLE SALLE 
-  ADD FOREIGN KEY FK_SALLE_SUCCURSALE (ID_SUCCURSALE)
-      REFERENCES SUCCURSALE (ID_SUCCURSALE) ;
+alter table salle 
+  add foreign key fk_salle_succursale (id_succursale)
+      references succursale (id_succursale) ;
 
 
-ALTER TABLE FORMATION_SALLE 
-  ADD FOREIGN KEY FK_FORMATION_SALLE_SALLE (ID_SALLE)
-      REFERENCES SALLE (ID_SALLE) ;
+alter table formation_salle 
+  add foreign key fk_formation_salle_salle (id_salle)
+      references salle (id_salle) ;
 
 
-ALTER TABLE FORMATION_SALLE 
-  ADD FOREIGN KEY FK_FORMATION_SALLE_FORMATION (ID_FORMATION)
-      REFERENCES FORMATION (ID_FORMATION) ;
+alter table formation_salle 
+  add foreign key fk_formation_salle_formation (id_formation)
+      references formation (id_formation) ;
 
 
-ALTER TABLE FORMATION_THEME 
-  ADD FOREIGN KEY FK_FORMATION_THEME_SOUS_THEME (ID_SOUS_THEME)
-      REFERENCES SOUS_THEME (ID_SOUS_THEME) ;
+alter table formation_theme 
+  add foreign key fk_formation_theme_sous_theme (id_sous_theme)
+      references sous_theme (id_sous_theme) ;
 
 
-ALTER TABLE FORMATION_THEME 
-  ADD FOREIGN KEY FK_FORMATION_THEME_FORMATION (ID_FORMATION)
-      REFERENCES FORMATION (ID_FORMATION) ;
+alter table formation_theme 
+  add foreign key fk_formation_theme_formation (id_formation)
+      references formation (id_formation) ;
 
 
-ALTER TABLE PRESENCE 
-  ADD FOREIGN KEY FK_PRESENCE_APPRENANT (ID_PERSONNE)
-      REFERENCES APPRENANT (ID_PERSONNE) ;
+alter table presence 
+  add foreign key fk_presence_apprenant (id_personne)
+      references apprenant (id_personne) ;
 
 
-ALTER TABLE PRESENCE 
-  ADD FOREIGN KEY FK_PRESENCE_FORMATION (ID_FORMATION)
-      REFERENCES FORMATION (ID_FORMATION) ;
+alter table presence 
+  add foreign key fk_presence_formation (id_formation)
+      references formation (id_formation) ;
 
 
-ALTER TABLE FORMATEUR_THEME 
-  ADD FOREIGN KEY FK_FORMATEUR_THEME_SOUS_THEME (ID_SOUS_THEME)
-      REFERENCES SOUS_THEME (ID_SOUS_THEME) ;
+alter table formateur_theme 
+  add foreign key fk_formateur_theme_sous_theme (id_sous_theme)
+      references sous_theme (id_sous_theme) ;
 
 
-ALTER TABLE FORMATEUR_THEME 
-  ADD FOREIGN KEY FK_FORMATEUR_THEME_FORMATEUR (ID_PERSONNE)
-      REFERENCES FORMATEUR (ID_PERSONNE) ;
+alter table formateur_theme 
+  add foreign key fk_formateur_theme_formateur (id_personne)
+      references formateur (id_personne) ;
 
 
-ALTER TABLE SALLE_THEME 
-  ADD FOREIGN KEY FK_SALLE_THEME_SALLE (ID_SALLE)
-      REFERENCES SALLE (ID_SALLE) ;
+alter table salle_theme 
+  add foreign key fk_salle_theme_salle (id_salle)
+      references salle (id_salle) ;
 
 
-ALTER TABLE SALLE_THEME 
-  ADD FOREIGN KEY FK_SALLE_THEME_SOUS_THEME (ID_SOUS_THEME)
-      REFERENCES SOUS_THEME (ID_SOUS_THEME) ;
+alter table salle_theme 
+  add foreign key fk_salle_theme_sous_theme (id_sous_theme)
+      references sous_theme (id_sous_theme) ;
 
